@@ -5,15 +5,18 @@ exports.seed = function(knex) {
       return knex('users').insert([
         {
           "id": 1,
-          "username": "user123"
+          "username": "user123",
+          "password": "testing123"
       },
       {
           "id": 2,
-          "username": "user1234"
+          "username": "user1234",
+          "password": "testing123"
       },
       {
           "id": 3,
-          "username": "user123456"
+          "username": "user123456",
+          "password": "testing123"
       }
       ]);
     });
