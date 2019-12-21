@@ -12,4 +12,9 @@ server.use(express.json());
 
 configureRoutes(server);
 
+
+server.get('/', (req, res) => {
+    res.send('Welcome to Saltiest HackerNews Trolls API!');
+  });
+
 module.exports = server;
