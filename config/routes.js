@@ -9,7 +9,11 @@ module.exports = server => {
   server.post('/api/register', register);
   server.post('/api/login', login);
   server.get('/api/users',  authenticate, getUsers);
-  server.get('/api/users/:id', authenticate, getUsersbyID)
+  server.get('/api/users/:id', authenticate, getUsersbyID);
+  server.get('/api/top20',top20);
+  server.post('/api/comment',comments);
+  
+
 };
 
 function register(req, res) {
@@ -21,6 +25,18 @@ function register(req, res) {
     .then(saved => {
       const token = tokenService.generateToken(user);
       res.status(201).json({ saved, message: `registered, ${token}` });
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+}
+
+function comments(req, res) {
+  // implement user to save comment
+  let comment = req.body;
+  Users.add(comment)
+    .then(saved => {
+      res.status(201).json({ saved, message: "comment saved!" });
     })
     .catch(error => {
       res.status(500).json(error);
@@ -80,6 +96,21 @@ function getUsersbyID(req,res){
       .status(500)
       .json({ errorMessage: 'The user information could not be retrieved.' });
   });
+}
+
+function top20(req, res) {
+  
+  Users.find()
+    .then(top_20_users => {
+      res.status(200).json(top_20_users);
+    })
+    /*.catch(() => {
+      res.status(500).json({
+        errorMessage: 'The top 20 comments could not be retrieved.',
+      });
+    });*/
+
+
 }
 
 /*
