@@ -31,7 +31,7 @@ module.exports = {
     const [id] = await db("comments").insert(comment, "id");
     console.log(id)
 
-    return findById(id);
+    
   }
 
   function findById(id) {
