@@ -15,10 +15,16 @@ module.exports = {
     return db("users").where(filter);
   }
 
-  async function add(user) {
-    const [id] = await db("users").insert(user);
+  function find() {
 
-    return findById(id);
+    return db("top_20_users")
+
+  }
+
+  async function add(user) {
+    const [id] = await db("users").insert(user, "id");
+    console.log(id)
+
   }
 
   function findById(id) {
