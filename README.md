@@ -15,5 +15,5 @@ GET	/api/user/:id	Find user by id number.
 
 Comments Endpoints
 
-Get /api/top20 returns array of top 20 saltiest user comments.
+GEt /api/top20 returns array of top 20 saltiest user comments.
 POST /api/comment allows user to save favorite comment.
