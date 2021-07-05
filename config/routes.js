@@ -10,6 +10,7 @@ module.exports = server => {
   server.post('/api/login', login);
   server.get('/api/users',  authenticate, getUsers);
   server.get('/api/users/:id', authenticate, getUsersbyID)
+  server.get('/api/top20',top20);
 };
 
 function register(req, res) {
@@ -81,7 +82,20 @@ function getUsersbyID(req,res){
       .json({ errorMessage: 'The user information could not be retrieved.' });
   });
 }
+function top20(req, res) {
 
+  Users.find()
+    .then(top_20_users => {
+      res.status(200).json(top_20_users);
+    })
+    .catch(() => {
+      res.status(500).json({
+        errorMessage: 'The top 20 comments could not be retrieved.',
+      });
+    });
+
+
+}
 /*
 server.delete('/api/users/:id', (req, res) => {
   Users.remove(req.params.id)
